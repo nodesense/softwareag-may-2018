@@ -15,12 +15,43 @@ import { SharedModule } from './shared/shared.module';
 
 import {FormsModule} from '@angular/forms';
 import { CartComponent } from './components/cart/cart.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
+// Step 1: Configuration, url to component mapping
+import {Routes, RouterModule} from '@angular/router';
+
+const routes: Routes = [
+    {
+        path: '',
+        component: HomeComponent
+    },
+    {
+        path: 'cart',
+        component: CartComponent
+    },
+    {
+        path: 'about',
+        component: AboutComponent
+    },
+    {
+        path: 'contact',
+        component: ContactComponent
+    }, 
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
+]
+
 
 @NgModule({
     imports: [
         //other module dependencies
         BrowserModule, // CommonModule, Compiler referenced
         FormsModule,
+
+        // apply routes to Angular
+        RouterModule.forRoot(routes),
         
         SharedModule
     ],
@@ -32,6 +63,7 @@ import { CartComponent } from './components/cart/cart.component';
         ContactComponent,
         AboutComponent,
         CartComponent,
+        NotFoundComponent,
         //HeaderComponent,
         //FooterComponent,
         //HomeComponent

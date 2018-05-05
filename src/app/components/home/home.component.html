@@ -52,3 +52,24 @@
 >
 
 </app-like>
+
+
+<p> Title {{title | uppercase}} </p>
+<p> Title {{title | lowercase}} </p>
+
+<p> Price {{price | currency }} </p>
+<p> Price {{price | currency:'INR' }} </p>
+<p> Price {{price | currency:'EUR' }} </p>
+
+<p> Date {{today  | date}}</p>
+
+<p> Date {{today  | date:'fullDate' | uppercase}}</p>
+
+
+<p> Date {{today  | date:'yyyy/MMM/dd'}}</p>
+
+<p> Power 2^3 ==> {{2 | power:3}} </p>
+
+<p> Power 2 ==> {{2 | power}} </p>
+
+<p> Power counter^2 ==> {{counter | power:2}} </p>

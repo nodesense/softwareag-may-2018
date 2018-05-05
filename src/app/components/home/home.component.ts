@@ -12,6 +12,13 @@ export class HomeComponent implements OnInit {
 
   homeLikes: number = 1000;
 
+
+  title = "Home";
+  price = 99.99;
+  today : Date = new Date();
+
+
+
   constructor() { }
 
   ngOnInit() {
