@@ -1,0 +1,30 @@
+<!-- template/view -->
+
+<div>
+    <h2>Welcome {{title}}</h2>
+
+    <app-header></app-header>
+    
+    <app-home>
+    </app-home>
+
+    <app-about></app-about>
+    <app-contact></app-contact>
+
+    <app-cart></app-cart>
+
+    <!-- div is parent in html hierachy -->
+    <!-- app-root is parent component -->
+         
+    <div>
+        <!-- parent to child communication -->
+
+        <!-- () event binding -->
+        <app-footer [x-company]="title"
+                    [date]="today"    
+                    (contactEvent)="onContact($event)"
+        >
+
+        </app-footer>
+    </div>
+</div>

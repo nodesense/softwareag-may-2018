@@ -1,0 +1,3 @@
+http://code.nodesense.ai
+username: nodesense
+password: bsol
