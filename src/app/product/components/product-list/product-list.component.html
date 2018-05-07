@@ -1,0 +1,31 @@
+<h2>Product List</h2>
+ 
+<div *ngFor="let product of (products$ | async)"
+     class="flex two"
+>
+   <app-product-widget [product]="product">
+
+   </app-product-widget>
+</div>  
+
+
+
+
+
+
+
+
+
+
+
+<!-- <select (change)="loadComponent($event.target.value)">
+  <option value='grid' selected>Grid</option>
+  <option value='table'>Table</option>
+</select> -->
+
+<!-- 
+<app-products-table [products]="(products$ | async)">
+
+</app-products-table> -->
+<!-- 
+<ng-template host-template ></ng-template> -->

@@ -13,12 +13,16 @@ import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './shared/shared.module';
 
 
+// ng 4.3 onwards
+import {HttpClientModule} from '@angular/common/http';
+
 import {FormsModule} from '@angular/forms';
 import { CartComponent } from './components/cart/cart.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // Step 1: Configuration, url to component mapping
 import {Routes, RouterModule} from '@angular/router';
+ import { ProductModule } from './product/product.module';
 
 const routes: Routes = [
     {
@@ -29,6 +33,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
     },
+    // {
+    //     path: 'products',
+    //     loadChildren: 'app/product/product.module#ProductModule'
+    // },
     {
         path: 'about',
         component: AboutComponent
@@ -52,8 +60,11 @@ const routes: Routes = [
 
         // apply routes to Angular
         RouterModule.forRoot(routes),
+        HttpClientModule,
         
-        SharedModule
+        SharedModule,
+        // TODO: Lazy loading
+        ProductModule
     ],
     declarations: [
         AppComponent,

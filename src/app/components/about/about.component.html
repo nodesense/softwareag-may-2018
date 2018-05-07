@@ -1,4 +1,15 @@
-<h2>About</h2>
+<!-- h2 is hosting directive aka host element -->
+
+<!-- <h2  appHighlight color="lightgreen"  >About</h2> -->
+
+
+<h2  appHighlight="lightgreen" #highlight1="appHighlight"  >About</h2>
+
+<p>Color is {{highlight1.color}}</p> 
+
+<button (click)="highlight1.setColor('purple')">
+   Change Color
+</button>
 
 <!-- # template reference -->
 
@@ -29,10 +40,13 @@
 
 <!-- ng 4.0, else -->
 
+<!-- div is host element -->
 <div  [ngClass]="{highlight: isMouseOver}" 
       *ngIf="show else notShown"
       (mouseenter)="isMouseOver = true"
       (mouseleave)="isMouseOver = false"
+
+      appHighlight="lightblue" 
       
       >
   <ul>

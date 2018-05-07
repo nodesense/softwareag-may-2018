@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
     this.counter--;
   }
 
+  example() {
+    import('app/product/product.module');
+  }
+
 }
