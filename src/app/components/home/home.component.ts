@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
 
   decrement() {
     this.counter--;
+    console.trace();
   }
  
 

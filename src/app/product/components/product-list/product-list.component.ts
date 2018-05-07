@@ -1,9 +1,14 @@
 import { Observable } from 'rxjs/Observable';
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, 
+    ComponentFactoryResolver } from '@angular/core';
 import { Product } from '../../models/product';
 import { Subscription } from 'rxjs/Subscription';
- 
+import { ProductsTableComponent } from '../products-table/products-table.component';
+import { ProductsGridComponent } from '../products-grid/products-grid.component';
+import { HostTemplateDirective } from '../../directives/host-template.directive';
+
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -12,10 +17,38 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProductListComponent implements OnInit {
  
   products$:Observable<Product[]>;
- 
-  constructor(private productService: ProductService ) { }
+
+  @ViewChild(HostTemplateDirective)
+  hostDirective: HostTemplateDirective;
+
+  constructor(private productService: ProductService, 
+    private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
     this.products$ = this.productService.getProducts();
-  }  
+    this.loadComponent('table');
+  } 
+
+  loadComponent(name: string) {
+    let map = {
+      "table": ProductsTableComponent,
+      "grid": ProductsGridComponent
+    }
+ 
+    let componentFactory = this.componentFactoryResolver
+                                .resolveComponentFactory(map[name]);
+ 
+    let viewContainerRef = this.hostDirective.viewContainerRef;
+    viewContainerRef.clear();
+
+    let componentRef = viewContainerRef.createComponent(componentFactory);
+
+
+    this.productService.getProducts()
+        .subscribe (products => {
+          (<ProductsGridComponent>componentRef.instance).products = products;
+
+        })
+
+  }
 }

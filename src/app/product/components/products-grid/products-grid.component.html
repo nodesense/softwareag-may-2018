@@ -1,7 +1,7 @@
-<div class="flex 2">
-  <article  class="card" *ngFor="let product of products">
-    <header>
-      <h2>{{product.name}}</h2>
-    </header>
-  </article>
+<div class="flex two">
+   
+   
+    <app-product-widget [product]="product" *ngFor="let product of products">
+
+    </app-product-widget>
 </div>

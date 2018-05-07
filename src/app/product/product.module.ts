@@ -19,8 +19,8 @@ import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes:Routes = [
   {
-     path: 'products',
-    //path : '',
+    // path: 'products',
+    path : '',
     component: ProductHomeComponent,
 
     canActivate: [AuthGuard],
@@ -63,7 +63,7 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
 
-   // SharedModule
+    SharedModule
   ],
   declarations: [ProductHomeComponent, 
                  ProductListComponent, 

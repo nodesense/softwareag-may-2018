@@ -22,7 +22,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // Step 1: Configuration, url to component mapping
 import {Routes, RouterModule} from '@angular/router';
-import { ProductModule } from './product/product.module';
+//import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
@@ -34,10 +34,10 @@ const routes: Routes = [
         path: 'cart',
         component: CartComponent
     },
-    // {
-    //     path: 'products',
-    //     loadChildren: 'app/product/product.module#ProductModule'
-    // },
+    {
+        path: 'products',
+        loadChildren: 'app/product/product.module#ProductModule'
+    },
     {
         path: 'about',
         component: AboutComponent
@@ -63,9 +63,9 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         HttpClientModule,
         
-        SharedModule,
+        SharedModule.forRoot(),
         // TODO: Lazy loading
-         ProductModule,
+        // ProductModule,
 
          AuthModule
     ],

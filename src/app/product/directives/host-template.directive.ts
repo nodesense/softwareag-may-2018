@@ -5,6 +5,8 @@ import { Directive, ViewContainerRef } from '@angular/core';
 })
 export class HostTemplateDirective {
 
+  data: any = "Dir";
+
   constructor(public viewContainerRef: ViewContainerRef) { }
 
 }

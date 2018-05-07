@@ -31,7 +31,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 
   providers: [
     // all the services
-    DataService
+       // DataService
   ]
 
 
