@@ -13,14 +13,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { ProductsGridComponent } from './components/products-grid/products-grid.component';
-import { HostTemplateDirective } from './directives/host-template.directive';
-
+import { HostTemplateDirective } from "./directives/host-template.directive";
+import { AuthGuard } from '../auth/guards/auth.guard';
+ 
 
 const routes:Routes = [
   {
      path: 'products',
     //path : '',
     component: ProductHomeComponent,
+
+    canActivate: [AuthGuard],
     // nested navigation
     children: [
       {
@@ -60,7 +63,7 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
 
-    //SharedModule
+   // SharedModule
   ],
   declarations: [ProductHomeComponent, 
                  ProductListComponent, 
@@ -72,7 +75,8 @@ const routes:Routes = [
     ProductService,
     SaveAlertGuard,
     CanEditGuard
-  ],
+  ]
+  ,
 
   entryComponents: [
     ProductsTableComponent, 

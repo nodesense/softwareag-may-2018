@@ -14,7 +14,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
     // models, can be accessed from view
-    title: string = 'Product App';
+    title: string = 'Product App ';
     today: Date = new Date();
 
     // View is NOT YET LOADED

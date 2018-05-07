@@ -22,7 +22,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 // Step 1: Configuration, url to component mapping
 import {Routes, RouterModule} from '@angular/router';
- import { ProductModule } from './product/product.module';
+import { ProductModule } from './product/product.module';
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
     {
@@ -64,7 +65,9 @@ const routes: Routes = [
         
         SharedModule,
         // TODO: Lazy loading
-        ProductModule
+         ProductModule,
+
+         AuthModule
     ],
     declarations: [
         AppComponent,

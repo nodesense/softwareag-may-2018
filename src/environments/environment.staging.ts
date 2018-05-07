@@ -7,6 +7,6 @@ export const environment = {
   production: false,
   buildName: 'Staging',
   // point to production domain api.example.com
-  apiEndPoint: 'http://localhost:7070',
+  apiEndPoint: 'http://localhost:7070/secured',
   authEndPoint: 'http://localhost:7070/oauth/token'
 };

@@ -1,5 +1,5 @@
 import { DataService } from './services/data.service';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LikeComponent } from './components/like/like.component';
 import { AddressComponent } from './components/address/address.component';
@@ -36,4 +36,12 @@ import { HighlightDirective } from './directives/highlight.directive';
 
 
 })
-export class SharedModule { }
+export class SharedModule { 
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [DataService]
+    };
+  }
+
+}

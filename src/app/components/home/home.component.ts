@@ -31,9 +31,6 @@ export class HomeComponent implements OnInit {
   decrement() {
     this.counter--;
   }
-
-  example() {
-    import('app/product/product.module');
-  }
+ 
 
 }
