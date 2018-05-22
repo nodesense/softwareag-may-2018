@@ -15,6 +15,7 @@ import { ProductsTableComponent } from './components/products-table/products-tab
 import { ProductsGridComponent } from './components/products-grid/products-grid.component';
 import { HostTemplateDirective } from "./directives/host-template.directive";
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
  
 
 const routes:Routes = [
@@ -39,12 +40,13 @@ const routes:Routes = [
       {
         path: 'create',
         component: ProductEditComponent,
+        canActivate: [AdminGuard],
         canDeactivate: [SaveAlertGuard]
       },
       {
         path: 'edit/:id', // products/edit/123456
         component: ProductEditComponent,
-        canActivate: [CanEditGuard],
+        canActivate: [AdminGuard, CanEditGuard],
         canDeactivate: [SaveAlertGuard]
       }, 
       {

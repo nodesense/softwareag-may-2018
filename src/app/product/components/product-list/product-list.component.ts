@@ -21,6 +21,11 @@ export class ProductListComponent implements OnInit {
   @ViewChild(HostTemplateDirective)
   hostDirective: HostTemplateDirective;
 
+  componentMap = {
+    "table": ProductsTableComponent,
+    "grid": ProductsGridComponent
+  }
+
   constructor(private productService: ProductService, 
     private componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -30,16 +35,11 @@ export class ProductListComponent implements OnInit {
   } 
 
   loadComponent(name: string) {
-    let map = {
-      "table": ProductsTableComponent,
-      "grid": ProductsGridComponent
-    }
- 
     let componentFactory = this.componentFactoryResolver
-                                .resolveComponentFactory(map[name]);
+                                .resolveComponentFactory(this.componentMap[name]);
  
     let viewContainerRef = this.hostDirective.viewContainerRef;
-    viewContainerRef.clear();
+    // viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
 

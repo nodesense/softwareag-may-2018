@@ -5,7 +5,13 @@
   </tr>
 
   <tr *ngFor="let product of products">
-    <td>{{product.name}}</td>
+    <td>
+        <a [routerLink]="['/products', 'edit', product.id, {source:'list'}]" >
+    
+      {{product.name}}
+      </a>
+    </td>
     <td>{{product.price}}</td>
   </tr>
+    
 </table>

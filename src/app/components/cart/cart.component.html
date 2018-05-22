@@ -1,4 +1,4 @@
-<h2>Cart</h2>
+<h2>Cart {{amount$ | async | currency:'INR'}}</h2>
 
 <button (click)="addItem()">
   Add Item
@@ -7,3 +7,15 @@
 <button (click)="empty()">
   Empty
 </button>
+
+
+<p>Counter: {{counter}}</p>
+<button (click)="incr()">
+  Incr
+</button>
+
+<ul>
+  <li *ngFor="let item of items">
+    <span>{{item.name}} - {{item.price}}</span>
+  </li>
+</ul>

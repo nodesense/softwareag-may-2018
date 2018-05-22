@@ -38,7 +38,7 @@ export class DataService {
 
     console.log("Amount ", this.amount);
 
-    // publish the amount
+    // publish the amount, emit
     this.amount$.next(this.amount);
 
     this.total$.next(this.total);

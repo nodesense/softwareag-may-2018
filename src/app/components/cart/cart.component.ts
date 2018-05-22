@@ -1,29 +1,71 @@
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { CartItem } from './../../shared/models/cart-item';
 import { DataService } from './../../shared/services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent  {
 
-  constructor(private dataService: DataService) { }
+  items: CartItem[] = [];
 
-  ngOnInit() {
+  //amount: number = 0;
+  //subscription : Subscription;
+
+  amount$: Observable<number>;
+
+  counter: number = 0;
+
+  constructor(private dataService: DataService) { 
+    this.items = dataService.items;
+
+    this.amount$ = dataService.amount$;
+
+    // this.amount = dataService.amount;
   }
 
+  ngOnInit() {
+    //this.initialize();
+  }
+
+  initialize(n: number) {
+    // add custome functionalities
+  }
+
+  incr() {
+    this.counter++;
+    this.initialize(this.counter);
+  }
+
+  // ngOnInit() {
+  //   this.subscription = this.dataService.amount$
+  //                   .subscribe ( n => {
+  //                     this.amount = n;
+  //                     console.log("CART SERVICE SUBS ", Math.random())
+  //                   })
+     
+  // }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
+
   addItem() {
-    let id = Math.ceil(Math.random() * 100000);
+    //let id = Math.ceil(Math.random() * 100000);
+    let id = 1;
     let item: CartItem = new CartItem(
                                 id,
                                 `Product ${id}`,
-                                Math.ceil(Math.random() * 100),
+                                100,
                                 1
                             )
 
     this.dataService.addItem(item);
+ 
   }
 
   empty() {

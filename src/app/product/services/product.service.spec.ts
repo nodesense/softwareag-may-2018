@@ -3,6 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, 
         HttpTestingController } from '@angular/common/http/testing';
 
+import {HttpClientModule} from '@angular/common/http';
 
 import { ProductService } from './product.service';
 import { Product } from '../models/product';
@@ -28,16 +29,23 @@ fdescribe('ProductService', () => {
     expect(service).toBeTruthy();
   }));
 
+
+  it("test timer ", (done) => {
+    setInterval(()=> {
+      console.log("Set Interval on timer ");
+      expect(1 + 2).toBe(3);
+      done();
+    }, 20000);
+  }, 30000);
  
-  
-  it('should return good response with data', (done) => {
-   
+  it('should return good response with data', (doneFn) => {
+     console.log("TEstme ")
     productService.getProducts()
                   .subscribe ( products => {
                     expect(products.length).toBe(2);
                     expect(products).toEqual(<Product[]> [{id: 1}, {id: 2}]);
                     //expect(products[0].price).toBe(1000);
-                    done();
+                    doneFn();
                   });
                    
 
@@ -47,7 +55,7 @@ fdescribe('ProductService', () => {
     httpMock.verify();
   });
 
-
+ 
   it('should return good one product', (done) => {
      
     productService.getProduct(100)
