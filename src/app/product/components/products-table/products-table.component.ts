@@ -20,9 +20,6 @@ export class ProductsTableComponent implements OnInit, ProductView {
 
   ngOnInit() {
   }
-
-  getProductName() {
-    console.log("Get PRoduct Name ", Math.random());
-  }
+ 
 
 }

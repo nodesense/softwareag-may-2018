@@ -1,5 +1,8 @@
+Field Name
 <input name="selectedField" [(ngModel)]="selectedField" />
+Condition ( &gt; or &lt; ==  )
 <input name="predicate" [(ngModel)]="predicate" />
+Value
 <input name="expectedValue" [(ngModel)]="expectedValue" />
 
 <table>
@@ -15,7 +18,6 @@
     
       {{product.name}}
 
-      {{getProductName()}}
       </a>
     </td>
     <td>{{product.price}}</td>

@@ -7,8 +7,7 @@ import { PowerPipe } from './pipes/power.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
-import { ProfileComponent } from './components/profile/profile.component';
-
+ 
 @NgModule({
   imports: [
     CommonModule
@@ -19,7 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     PowerPipe, 
     FilterPipe, 
     SortPipe, 
-    HighlightDirective, ProfileComponent],
+    HighlightDirective],
 
   exports: [
     LikeComponent,
