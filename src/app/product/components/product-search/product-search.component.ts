@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+
+import { FormBuilder,
+         FormGroup, 
+         FormControl} from '@angular/forms';
+
+
+import {Subscription} from "rxjs/Rx";
+import { ProductService } from "../../services/product.service";
+ 
 
 @Component({
   selector: 'app-product-search',
@@ -7,9 +16,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductSearchComponent implements OnInit {
 
-  constructor() { }
+    form:FormGroup;
+    searchControl: FormControl;
+    products: any[] = [];
+    searchText: any = '';
 
-  ngOnInit() {
-  }
+
+
+    subscription: Subscription;
+
+    constructor(private productService: ProductService,
+                private formBuilder: FormBuilder
+    ) {
+        this.searchControl = new FormControl("");
+
+        this.form = formBuilder.group({
+            "searchControl" : this.searchControl
+        });
+
+        
+    }
+
+    ngOnInit() {
+        this.searchControl.valueChanges
+        .map ( value => value.trim())
+        .filter (value => !!value)
+        .debounceTime(400)
+        .subscribe( (value: string) => {
+            console.log("subscribe changed ", value, 
+                        " length ", value.length);
+
+            
+            this.searchText = value;
+            
+            this.productService.searchProducts(this.searchText)
+            .subscribe( (results: any[]) => {
+                this.products = results;
+            })
+            
+            //TODO: Search and update products
+        })
+    }
+ 
+  
 
 }
+
+// .debounceTime(400)
+// .map ( (text: string) => {
+//     console.log("at map ", text.length);
+//     return text.trim()
+// })
+// .filter ( (text: string) => text.length > 0) // min 1 char

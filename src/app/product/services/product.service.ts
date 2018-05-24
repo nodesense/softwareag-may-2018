@@ -20,6 +20,12 @@ export class ProductService {
     return this.http.get<Product[]>(`${environment.apiEndPoint}/api/products`);
   }
 
+
+  // GET /api/products
+  searchProducts(q: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${environment.apiEndPoint}/api/products?q=${q}`);
+  }
+
   // GET /api/products/100
   getProduct(id: any): Observable<Product> {
     return this.http
