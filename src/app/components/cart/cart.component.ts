@@ -30,6 +30,11 @@ export class CartComponent  {
 
   ngOnInit() {
     //this.initialize();
+
+    this.dataService.amount$
+                    .subscribe ( n => {
+                      console.log("got amount ", n);
+                    })
   }
 
   initialize(n: number) {

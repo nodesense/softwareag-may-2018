@@ -41,14 +41,14 @@ export class ProductService {
   getBrands(): Observable<Brand[]> {
     //todo: check if cache present, serve from cache
 
-    let brandsJson = this.storage.getItem("brands");
-    if (brandsJson) {
-      console.log("Serving brands from cache ");
+    // let brandsJson = this.storage.getItem("brands");
+    // if (brandsJson) {
+    //   console.log("Serving brands from cache ");
 
-      //TODO: convert to observable
-      let brands: Brand[] = <Brand[]> JSON.parse(brandsJson);
-      return Observable.of(brands);
-    }
+    //   //TODO: convert to observable
+    //   let brands: Brand[] = <Brand[]> JSON.parse(brandsJson);
+    //   return Observable.of(brands);
+    // }
 
     console.log("Serving from server");
     return this.http

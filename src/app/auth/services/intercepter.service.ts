@@ -19,7 +19,7 @@ export class IntercepterService implements HttpInterceptor  {
   
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
      
-    console.log ("Intercepter ", request.url);
+    console.log ("Intercepter ", request.url, request.method);
     //TODO: injector
 
     if (!this.authService) {

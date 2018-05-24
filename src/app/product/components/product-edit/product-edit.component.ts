@@ -1,24 +1,41 @@
+import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product';
 import { Brand } from '../../models/brand';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
+import { Editable } from '../../models/Editable';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
   styleUrls: ['./product-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ProductEditComponent implements OnInit,  Editable {
   
   product: Product  = new Product();
+ 
+  brands: Brand[] = [];
+  brands$: Observable<Brand[]>;
 
-  brands$:Observable<Brand[]>;
+  @ViewChild("pName")
+  pName: ElementRef;
 
   @ViewChild("productForm")
   form: NgForm;
+
+  // #productName="ngModel"
+
+//  subscription: Subscription;
+
+  @ViewChild("productName")
+  productName: NgModel;
+
+  isSaved(): boolean {
+    return this.form.pristine
+  }
 
 
   constructor(private route: ActivatedRoute, 
@@ -26,6 +43,9 @@ export class ProductEditComponent implements OnInit {
               private productService: ProductService) { }
 
   ngOnInit() {
+
+    this.pName.nativeElement.focus();
+
     // to read url/matrix parameter
     // products/edit/:id;source=list
     const id = this.route.snapshot.params['id'];
@@ -35,14 +55,40 @@ export class ProductEditComponent implements OnInit {
     if (id) {
       // edit
       this.productService.getProduct(id)
-          .subscribe(product => {
+          .toPromise()
+          .then(product => {
             this.product = product;
-          });
+          })
+          .catch (error => {
+
+          })
     }
 
-    this.brands$ = this.productService.getBrands();
+    console.log("begin");
+
+    let ob : Observable<Brand[]> =  this.productService.getBrands();
+
+                       ob
+                       .subscribe ( brands => {
+                         this.brands = brands;
+                         console.log("Got Data ", brands);
+                       })
+
+                       ob
+                       .subscribe ( brands => {
+                         this.brands = brands;
+                         console.log("Got Data ", brands);
+                       })
+
+      console.log(" done ", this.brands);
+
+  this.brands$ = this.productService.getBrands();
 
   }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 
   gotoList() {
     this.router.navigateByUrl('/products/list');

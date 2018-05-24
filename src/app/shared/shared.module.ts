@@ -7,6 +7,7 @@ import { PowerPipe } from './pipes/power.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     PowerPipe, 
     FilterPipe, 
     SortPipe, 
-    HighlightDirective],
+    HighlightDirective, ProfileComponent],
 
   exports: [
     LikeComponent,
@@ -31,7 +32,9 @@ import { HighlightDirective } from './directives/highlight.directive';
 
   providers: [
     // all the services
-       // DataService
+      //  DataService
+
+       
   ]
 
 
@@ -41,6 +44,13 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [DataService]
+    };
+  }
+
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule
+       
     };
   }
 

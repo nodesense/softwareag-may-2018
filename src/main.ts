@@ -1,3 +1,4 @@
+import { environment } from './environments/environment';
 
 // beware, too many imports
 import "rxjs/Rx";
@@ -10,6 +11,7 @@ import { AppModule } from './app/app.module';
 import {platformBrowserDynamic} 
         from '@angular/platform-browser-dynamic';
 
+console.log("ENV ", environment);
         
 platformBrowserDynamic()
     .bootstrapModule(AppModule)

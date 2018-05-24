@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
                                 .resolveComponentFactory(this.componentMap[name]);
  
     let viewContainerRef = this.hostDirective.viewContainerRef;
-    // viewContainerRef.clear();
+    //viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
 

@@ -9,6 +9,9 @@ import { ProductView } from '../../models/products-view';
 })
 export class ProductsTableComponent implements OnInit, ProductView {
 
+  selectedField: string;
+  predicate: string;
+  expectedValue: string;
 
   @Input()
   products: Product[] = [];
@@ -16,6 +19,10 @@ export class ProductsTableComponent implements OnInit, ProductView {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getProductName() {
+    console.log("Get PRoduct Name ", Math.random());
   }
 
 }

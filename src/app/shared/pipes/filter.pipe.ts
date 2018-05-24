@@ -11,6 +11,7 @@ export class FilterPipe implements PipeTransform {
             field: string,
             predicate: string,
             value: any): any[] {
+              
     if (!items || !field || !predicate || !value) {
       return items;
     }

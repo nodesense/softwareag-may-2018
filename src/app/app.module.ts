@@ -1,8 +1,9 @@
+import { ErrorHandlerService } from './services/error-handler.service';
  // module is a logical collection of
 // components, directives, pipes (filters)
 // services (providers)
 
-import {NgModule} from '@angular/core';
+import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         HttpClientModule,
         
-        SharedModule.forRoot(),
+        //SharedModule,
+       SharedModule.forRoot(),
         // TODO: Lazy loading
         // ProductModule,
 
@@ -81,6 +83,12 @@ const routes: Routes = [
         //HeaderComponent,
         //FooterComponent,
         //HomeComponent
+    ],
+    providers: [
+        {
+            provide: ErrorHandler,
+            useClass: ErrorHandlerService
+        }
     ],
     bootstrap: [
         AppComponent

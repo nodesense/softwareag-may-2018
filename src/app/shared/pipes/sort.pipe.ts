@@ -5,8 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(items: any[], fieldName): any {
+    if (!items || !fieldName) {
+      return items;
+    }
+
+    return items.sort ( (left, right) => {
+          if (left[fieldName] < right[fieldName])
+            return 1;
+
+          return -1
+    })
   }
 
 }

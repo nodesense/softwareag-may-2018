@@ -20,7 +20,14 @@
          minlength="2"
 
          #productName="ngModel"
+
+         #pName
          />
+
+
+    <button (click)="pName.focus()" type="button">
+      Set Focus
+    </button>
 
   <p *ngIf="productName.invalid">
      Invalid Input Name

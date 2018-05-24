@@ -28,6 +28,8 @@ export class FooterComponent implements OnInit {
 
   total: number;
 
+  currentDateTime: Date;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -43,6 +45,11 @@ export class FooterComponent implements OnInit {
                     .subscribe(n => {
                       this.total = n;
                     })
+
+    setInterval(() => {
+       this.currentDateTime = new Date();
+    }, 1000);
+ 
   }
 
   contact() {

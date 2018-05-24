@@ -20,7 +20,7 @@ import { Directive,
 export class HighlightDirective implements OnInit, OnDestroy {
 
   // appHighlight="lightgreen"  
-  @Input("appHighlight")
+  @Input('appHighlight')
   color: string;
 
   constructor(private hostElement: ElementRef, 

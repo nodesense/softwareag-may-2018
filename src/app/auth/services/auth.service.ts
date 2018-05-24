@@ -42,9 +42,13 @@ export class AuthService {
     return this.storage.getItem('token');
   }
 
+  getUser() {
+    return JSON.parse(this.storage.getItem("user"))
+  }
+
   hasRole(role: string) {
     // includes from ES7
-    return this.user.roles.includes(role);
+    return this.getUser().roles.includes(role);
   }
 
   login(username: string, password: string):Observable<any> {
@@ -59,6 +63,9 @@ export class AuthService {
                  //data has token, roles
                  console.log("DAta ", data);
                  this.user = data.identity;
+                 
+                 this.storage.setItem("user", JSON.stringify(this.user));
+
                  console.log("User", this.user);
                  this.storage.setItem("token", data.token);
                  this.authStatus.next(true);

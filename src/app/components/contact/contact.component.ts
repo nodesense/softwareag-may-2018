@@ -35,4 +35,8 @@ export class ContactComponent implements OnInit  {
     }, 3000);
   }
 
+  crash() {
+    throw new Error("Crash in component")
+  }
+
 }

@@ -31,4 +31,9 @@ export class AppComponent implements OnInit {
     onContact(n: number) {
         alert(n);
     }
+
+    getName() {
+        console.log("Get name ", Math.random());
+        return "Angular"
+    }
 }

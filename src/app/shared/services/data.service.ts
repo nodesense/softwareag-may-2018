@@ -13,9 +13,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Injectable()
 export class DataService {
 
-
-  //amount$: Subject<number> = new Subject();
-  amount$: BehaviorSubject<number>;
+  amount$: Subject<number>;// = new Subject();
+  //amount$: BehaviorSubject<number>;
   amount: number = 0;
 
 
@@ -27,7 +26,8 @@ export class DataService {
   constructor() { 
     console.log("Data service created");
 
-    this.amount$ = new BehaviorSubject(this.amount);
+   this.amount$ = new BehaviorSubject(this.amount);
+   //this.amount$ = new Subject();
   }
 
   addItem(item: CartItem) {

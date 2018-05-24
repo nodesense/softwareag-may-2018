@@ -24,7 +24,7 @@ const routes:Routes = [
     path : '',
     component: ProductHomeComponent,
 
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
     // nested navigation
     children: [
       {
@@ -40,14 +40,14 @@ const routes:Routes = [
       {
         path: 'create',
         component: ProductEditComponent,
-        canActivate: [AdminGuard],
-        canDeactivate: [SaveAlertGuard]
+   //     canActivate: [AdminGuard],
+     //   canDeactivate: [SaveAlertGuard]
       },
       {
         path: 'edit/:id', // products/edit/123456
         component: ProductEditComponent,
-        canActivate: [AdminGuard, CanEditGuard],
-        canDeactivate: [SaveAlertGuard]
+       // canActivate: [AdminGuard, CanEditGuard],
+     //   canDeactivate: [SaveAlertGuard]
       }, 
       {
         path: 'search',
@@ -65,13 +65,16 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
 
-    SharedModule
+    SharedModule.forChild()
   ],
   declarations: [ProductHomeComponent, 
                  ProductListComponent, 
                  ProductEditComponent, 
                  ProductSearchComponent, 
-                 ProductWidgetComponent, ProductsTableComponent, ProductsGridComponent, HostTemplateDirective],
+                 ProductWidgetComponent, 
+                 ProductsTableComponent, 
+                 ProductsGridComponent, 
+                 HostTemplateDirective],
 
   providers: [
     ProductService,
