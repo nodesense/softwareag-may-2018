@@ -15,7 +15,7 @@ import { FormGroup,
         AbstractControl } 
   from '@angular/forms';
 
-import {ValidateUserName} from "./validators";
+// import {ValidateUserName} from "./validators";
 
 @Component({
   selector: 'app-login',
@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
               private authService: AuthService,
               private router: Router
   ) { 
-    this.nameControl = new FormControl("", ValidateUserName);
+//    this.nameControl = new FormControl("", ValidateUserName);
+    this.nameControl = new FormControl("", Validators.required);
     this.passwordControl = new FormControl("", Validators.required);
     
     this.form = this.formBuilder.group({

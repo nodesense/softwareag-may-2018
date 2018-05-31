@@ -16,6 +16,8 @@ export class AuthService {
 
   user: User = new User();
 
+  user$: BehaviorSubject<User>;
+
   storage: Storage = window.localStorage;
 
   //FIXME: interceptors, cyclic dependencies
@@ -23,6 +25,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { 
 
     this.authStatus =   new BehaviorSubject(this.isAuthenticated());
+    this.user = this.getUser();
+    this.user$ = new BehaviorSubject(this.user);
   }
 
   public redirectUrl:string;
@@ -43,7 +47,10 @@ export class AuthService {
   }
 
   getUser() {
-    return JSON.parse(this.storage.getItem("user"))
+    let userJson = this.storage.getItem("user");
+    if (userJson)
+      return JSON.parse(userJson)
+    else return new User();
   }
 
   hasRole(role: string) {
@@ -64,7 +71,11 @@ export class AuthService {
                  console.log("DAta ", data);
                  this.user = data.identity;
                  
+                 this.user$.next(this.user);
+
                  this.storage.setItem("user", JSON.stringify(this.user));
+
+                 
 
                  console.log("User", this.user);
                  this.storage.setItem("token", data.token);
@@ -78,5 +89,6 @@ export class AuthService {
     this.storage.clear();
     this.authStatus.next(false);
     this.user = new User();
+    this.user$.next(this.user);
   }
 }

@@ -3,9 +3,9 @@
 <!-- <h2  appHighlight color="lightgreen"  >About</h2> -->
 
 
-<h2  [appHighlight]="'light' + 'green'" #highlight1="appHighlight"  >About</h2>
+<h2  [(appHighlight)]="myColor" #highlight1="appHighlight"  >About</h2>
 
-<p  [appHighlight]="'light' + 'green'" #highlight2="appHighlight"  >About</p>
+<p  appHighlight color="'light' + 'green'" #highlight2="appHighlight"  >About</p>
 
 <p>Color is {{highlight1.color}}</p> 
 

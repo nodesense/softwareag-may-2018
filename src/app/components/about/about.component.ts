@@ -16,6 +16,8 @@ export class AboutComponent implements OnInit {
 
   isMouseOver: boolean = false;
 
+  myColor: string = 'lightgreen'
+
   @ViewChild("memberName")
   inputElement: ElementRef;
 

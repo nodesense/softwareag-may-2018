@@ -20,8 +20,11 @@ import { Directive,
 export class HighlightDirective implements OnInit, OnDestroy {
 
   // appHighlight="lightgreen"  
-  @Input('appHighlight')
+  @Input("appHighlight")
   color: string;
+
+  @Output("appHighlightChange")
+  colorChange: EventEmitter<string> = new EventEmitter();
 
   constructor(private hostElement: ElementRef, 
              private renderer: Renderer2) { 
@@ -40,6 +43,7 @@ export class HighlightDirective implements OnInit, OnDestroy {
   @HostListener('click')
   onClick() {
      console.log("Directive click");
+     this.colorChange.emit("red");
   }
 
   @HostListener('mouseenter')

@@ -13,7 +13,7 @@ Login
     class="button"  
     routerLinkActive="success" 
 > 
-Profile
+Profile [{{(user$ | async)?.name}}]
 </a>
 
 

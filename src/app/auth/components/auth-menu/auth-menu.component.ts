@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 export class AuthMenuComponent implements OnInit {
 
   authStatus$: Observable<boolean>;
+  user$: Observable<User>;
 
    
 
@@ -19,6 +21,7 @@ export class AuthMenuComponent implements OnInit {
 
   ngOnInit() {
     this.authStatus$ = this.authService.authStatus;
+    this.user$ = this.authService.user$;
   }
 
 
