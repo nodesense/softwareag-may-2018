@@ -1,3 +1,4 @@
+import { LoggerService } from './../../services/logger.service';
 import { HighlightDirective } from './../../shared/directives/highlight.directive';
 import { Component, OnInit
         , ViewChild, ElementRef } from '@angular/core';
@@ -28,7 +29,10 @@ export class AboutComponent implements OnInit {
   @ViewChild("highlight1")
   highlight: HighlightDirective;
 
-  constructor() { }
+  constructor(private logger: LoggerService) { 
+   // throw new Error("Boom about cons");
+
+  }
 
   ngOnInit() {
     this.p1Element.nativeElement.textContent = 'from TS';
@@ -37,6 +41,8 @@ export class AboutComponent implements OnInit {
     //TODO: 
     console.log("Dir ", this.highlight.color);
     this.highlight.setColor('blue');
+
+    this.logger.error("Theme not set");
   }
 
   empty() {
@@ -46,6 +52,10 @@ export class AboutComponent implements OnInit {
   addMember(name: string) {
      
     this.members.push(name);
+  }
+
+  throwError() {
+    throw new Error("Unknown in remote location");
   }
 
 }

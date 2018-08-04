@@ -1,3 +1,4 @@
+import { LoggerService } from './logger.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject, ErrorHandler } from "@angular/core";
 import {Location} from "@angular/common";
@@ -11,7 +12,8 @@ import { environment } from '../../environments/environment';
 export class ErrorHandlerService implements ErrorHandler {
     
     constructor(private location: Location,
-                private http: HttpClient) {
+                private http: HttpClient, 
+                private logger: LoggerService) {
          
     }
 
@@ -26,19 +28,21 @@ export class ErrorHandlerService implements ErrorHandler {
             console.groupEnd();
  
 
-        let data: {} = {}
-        data["message"] = error.message;
-        data["stack_trace"] = JSON.stringify(error.stack);
+            this.logger.exception(error);
+            
+        // let data: {} = {}
+        // data["message"] = error.message;
+        // data["stack_trace"] = JSON.stringify(error.stack);
 
           
-        //POST /crash/logs
-        this.http.post(environment.apiEndPoint + "/logs/errors",
-                        data 
-        )
+        // //POST /crash/logs
+        // this.http.post(environment.apiEndPoint + "/logs/errors",
+        //                 data 
+        // )
          
-        .subscribe ( () => {
-            console.log("posted error logs to api");
-        })
+        // .subscribe ( () => {
+        //     console.log("posted error logs to api");
+        // })
     
 
             

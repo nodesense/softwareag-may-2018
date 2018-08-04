@@ -25,6 +25,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {Routes, RouterModule} from '@angular/router';
 //import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
+import { LoggerService } from './services/logger.service';
 
 const routes: Routes = [
     {
@@ -88,7 +89,9 @@ const routes: Routes = [
         {
             provide: ErrorHandler,
             useClass: ErrorHandlerService
-        }
+        },
+
+        LoggerService
     ],
     bootstrap: [
         AppComponent

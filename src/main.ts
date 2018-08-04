@@ -1,5 +1,11 @@
 import { environment } from './environments/environment';
 
+var oldLog = console.log;
+
+console.log = function(msg) {
+    oldLog(msg);
+}
+
 // beware, too many imports
 import "rxjs/Rx";
 
