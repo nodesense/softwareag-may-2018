@@ -19,5 +19,5 @@ import {platformBrowserDynamic}
 
 console.log("ENV ", environment);
         
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
+platformBrowserDynamic() // it mount either JIT or AOT build
+    .bootstrapModule(AppModule) // it compiles your templates into js in JIT + loading components

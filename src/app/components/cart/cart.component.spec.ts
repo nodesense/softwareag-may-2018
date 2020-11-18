@@ -1,34 +1,47 @@
+import { RouterModule } from '@angular/router';
 import { DataService } from './../../shared/services/data.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartComponent } from './cart.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 fdescribe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
 
   beforeEach(async(() => {
+    // Testing is complex, including whole module as is, might have dependcies issues
+    // isoalte testing component, so that we can test only component
+    // create angular module for testing
     TestBed.configureTestingModule({
-      declarations: [ CartComponent ],
+      imports: [
+        RouterModule.forRoot([]), // router computer, directives 
+        // MatModelModule
+      ], 
+      declarations: [ CartComponent,
+                      // CartSummary, 
+                    ],
       providers: [
-        DataService
+        DataService,
+        {provide: APP_BASE_HREF, useValue: '/'} 
       ]
     })
-    .compileComponents();
+    .compileComponents(); // JIT/AOT, will compile html views, convert to js.
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    // is component created, 
+    expect(component).toBeTruthy(); 
   });
 
   it("should be default counter 0", () => {
-    expect(component.counter).toBe(0);
+    expect(component.counter).toBe(0); // primitives numbers, string, boolean, ref check
     component.incr();
     expect(component.counter).toBe(1);
   })
@@ -47,6 +60,7 @@ fdescribe('CartComponent', () => {
   // html functionalitied
  
   it("should be initialize called", () => {
+    fixture.detectChanges();
     let element = fixture.nativeElement;
      
     expect(element.querySelectorAll('p')[0].textContent)
@@ -57,6 +71,7 @@ fdescribe('CartComponent', () => {
     expect(component.counter).toBe(1)
 
     // force render html
+    // due to absense of zone.js
     fixture.detectChanges();
 
     expect(element.querySelectorAll('p')[0].textContent)
